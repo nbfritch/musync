@@ -94,7 +94,10 @@ fn main() -> io::Result<()> {
 
         let mut line = String::from("?");
         io::stdin().read_line(&mut line).expect("Bad input string");
-        fs::remove_file(delete_file).expect("oopes");
+        let rm_result = fs::remove_file(delete_file);
+        if !rm_result.is_ok() {
+            println!("Error: Could not delete file {}", f.relative_path);
+        }
     });
 
     files_in_src_not_in_dest.iter().for_each(|f| {
