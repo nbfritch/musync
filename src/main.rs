@@ -14,7 +14,7 @@ impl FileListing {
     fn equivalent_to(&self, other: &Self) -> bool {
         self.size == other.size
             && self.name == other.name
-            && self.relative_path == other.relative_path
+            && self.relative_path.to_lowercase() == other.relative_path.to_lowercase()
     }
 }
 
